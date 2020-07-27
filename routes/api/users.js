@@ -9,14 +9,14 @@ const { check, validationResult } = require("express-validator");
 
 router.post(
   "/",
-  // [
-  //   check("name", "Name is required").not().isEmpty(),
-  //   check("email", "Please include a valid email").isEmail(),
-  //   check(
-  //     "password",
-  //     "Please enter a password with 6 or more characters"
-  //   ).isLength({ min: 6 }),
-  // ],
+  [
+    check("name", "Name is required").not().isEmpty(),
+    check("email", "Please include a valid email").isEmail(),
+    check(
+      "password",
+      "Please enter a password with 6 or more characters"
+    ).isLength({ min: 6 }),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -50,8 +50,6 @@ router.post(
       const salt = await bcrypt.genSalt(10);
 
       user.password = await bcrypt.hash(password, salt);
-
-      console.log(await bcrypt.hash(password, salt));
 
       await user.save();
 

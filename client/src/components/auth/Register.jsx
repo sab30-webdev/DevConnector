@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
@@ -32,7 +32,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
+    <div className="container">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
@@ -45,6 +45,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             name="name"
             value={name}
             onChange={onChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -54,6 +55,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             name="email"
             value={email}
             onChange={onChange}
+            required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -67,6 +69,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             name="password"
             value={password}
             onChange={onChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -76,6 +79,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             name="password2"
             value={password2}
             onChange={onChange}
+            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -83,7 +87,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </Fragment>
+    </div>
   );
 };
 
