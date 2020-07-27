@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createProfile } from "../../actions/profile";
 
-const CreateProfile = (props) => {
+const CreateProfile = ({ createProfile, history }) => {
   const initialState = {
     company: "",
     website: "",
@@ -21,7 +22,7 @@ const CreateProfile = (props) => {
 
   const [formData, setFormData] = useState(initialState);
 
-  const [displaySocialInputs, setDisplaySocialInputs] = useState(false);
+  const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   const {
     company,
@@ -42,6 +43,11 @@ const CreateProfile = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
+
   return (
     <section className="container">
       <h1 className="large text-primary">Edit Your Profile</h1>
@@ -49,7 +55,7 @@ const CreateProfile = (props) => {
         <i className="fas fa-user" /> Add some changes to your profile
       </p>
       <small>* = required field</small>
-      <form className="form">
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <select name="status" value={status} onChange={onChange}>
             <option>* Select Professional Status</option>
@@ -139,7 +145,7 @@ const CreateProfile = (props) => {
 
         <div className="my-2">
           <button
-            onClick={() => setDisplaySocialInputs(!displaySocialInputs)}
+            onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type="button"
             className="btn btn-light"
           >
@@ -216,6 +222,8 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfile;
+export default connect(null, { createProfile })(withRouter(CreateProfile));
