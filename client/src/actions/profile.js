@@ -17,9 +17,7 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-export const createProfile = (formData, history, edit = false) => async (
-  dispatch
-) => {
+export const createProfile = (formData, history, edit) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -35,7 +33,9 @@ export const createProfile = (formData, history, edit = false) => async (
       payload: res.data,
     });
 
-    dispatch(setAlert(edit ? "Profile updated" : "Profile Created", "success"));
+    dispatch(
+      setAlert(!edit ? "Profile updated" : "Profile Created", "success")
+    );
 
     if (!edit) {
       history.push("/dashboard");
