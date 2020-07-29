@@ -4,7 +4,6 @@ const auth = require("../../middlewares/auth");
 const Profile = require("../../models/Profile");
 const { check, validationResult } = require("express-validator");
 
-
 router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
@@ -78,11 +77,12 @@ router.post(
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
-          { new: true }
+          { new: false }
         );
+      } else {
+        profile = new Profile(profileFields);
       }
 
-      profile = new Profile(profileFields);
       await profile.save();
       res.json(profile);
     } catch (err) {

@@ -34,7 +34,7 @@ const EditProfile = ({
     setFormData({
       company: loading && !profile.company ? "" : profile.company,
     });
-  }, [loading]);
+  }, [loading, profile.company]);
 
   const {
     company,
