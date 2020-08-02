@@ -40,7 +40,7 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
-  margin-top: 6rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
 }
 
@@ -150,7 +150,7 @@ img {
 
 .alert {
   padding: 0.8rem;
-  margin: 1rem 0;
+  margin: 2rem 0 0 0;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
@@ -304,7 +304,7 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  position: fixed;
+
   z-index: 1;
   width: 100%;
   top: 0;
