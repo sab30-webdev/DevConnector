@@ -6,7 +6,7 @@ import {
   UPDATE_PROFILE,
   ACCOUNT_DELETED,
   CLEAR_PROFILE,
-  GET_REPOS
+  GET_REPOS,
 } from "./types";
 import { setAlert } from "./alert";
 
@@ -203,7 +203,6 @@ export const getProfiles = () => async (dispatch) => {
 
 // Get user profile by userId
 export const getProfileById = (userId) => async (dispatch) => {
-
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -219,10 +218,8 @@ export const getProfileById = (userId) => async (dispatch) => {
   }
 };
 
-
-// GEt githubrepos
+// Get githubrepos
 export const getGithubRepos = (username) => async (dispatch) => {
-
   try {
     const res = await axios.get(`/api/profile/${username}/repos`);
 

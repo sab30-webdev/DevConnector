@@ -9,13 +9,18 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <Fragment>
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
+          <Link className="nav-link" to="/profiles">
+            Developers
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
             <i className="fas fa-user "></i>{" "}
             <span className="hide-sm">Dashboard</span>
           </Link>
         </li>
       </ul>
-      <ul className="navbar-nav mr-auto">
+      <ul className="navbar-nav ml-auto">
         <li onClick={logout} className="nav-item">
           <a className="nav-link" href="#!">
             <i className="fas fa-sign-out-alt "></i>{" "}
@@ -30,10 +35,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <Fragment>
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <a className="nav-link" href="#!">
-            {" "}
+          <Link className="nav-link" to="/profiles">
             Developers
-          </a>
+          </Link>
         </li>
       </ul>
       <ul className="navbar-nav ml-auto">
