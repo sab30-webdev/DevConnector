@@ -31,10 +31,26 @@ const EditProfile = ({
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-    setFormData({
-      company: loading && !profile.company ? "" : profile.company,
-    });
-  }, [loading, profile.company]);
+    if (!profile) getCurrentProfile();
+    if (!loading && profile) {
+      const profileData = { ...initialState };
+      for (const key in profile) {
+        if (key in profileData) {
+          profileData[key] = profile[key];
+        }
+      }
+
+      for (const key in profile.social) {
+        if (key in profileData) {
+          profileData[key] = profile.social[key];
+        }
+      }
+
+      if (Array.isArray(profileData.skills))
+        profileData.skills = profileData.skills.join(", ");
+      setFormData(profileData);
+    }
+  }, [loading]);
 
   const {
     company,
