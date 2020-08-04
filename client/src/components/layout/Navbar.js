@@ -10,7 +10,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/profiles">
-            Developers
+            <i class="fas fa-server"></i>{" "}
+            <span className="hide-sm">Developers</span>
           </Link>
         </li>
         <li className="nav-item">
