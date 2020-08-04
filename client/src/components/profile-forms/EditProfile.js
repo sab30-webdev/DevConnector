@@ -50,7 +50,7 @@ const EditProfile = ({
         profileData.skills = profileData.skills.join(", ");
       setFormData(profileData);
     }
-  }, [loading, getCurrentProfile, profile, initialState]);
+  }, [loading, getCurrentProfile]);
 
   const {
     company,

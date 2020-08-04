@@ -1,4 +1,6 @@
 import React, { useEffect, Fragment } from "react";
+import ProfileTop from "./ProfileTop";
+import ProfileAbout from "./ProfileAbout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProfileById } from "../../actions/profile";
@@ -21,11 +23,13 @@ const Profile = ({ profile: { profile }, getProfileById, auth, match }) => {
           </Link>
           {auth.isAuthenticated &&
             auth.isLoading === false &&
-            auth.user._id === profile.user && (
+            auth.user._id === profile.user._id && (
               <Link to="/edit-profile" className="btn btn-dark">
                 Edit Profile
               </Link>
             )}
+          <ProfileTop profile={profile} />
+          <ProfileAbout profile={profile} />
         </Fragment>
       )}
     </div>
