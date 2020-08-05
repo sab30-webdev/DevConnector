@@ -1,4 +1,6 @@
 const express = require("express");
+const axios = require("axios");
+const config = require("config");
 const router = express.Router();
 const auth = require("../../middlewares/auth");
 const Profile = require("../../models/Profile");
@@ -290,10 +292,12 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
   }
 });
 
-router.get("/github/:username/repos", async (req, res) => {
+router.get("/github", async (req, res) => {
   try {
-    const uri = await `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`;
-    res.send(uri);
+    const gitHubResponse = await axios.get(
+      `https://api.github.com/users/sab30-webdev/repos`
+    );
+    return res.send(gitHubResponse);
   } catch (err) {
     console.error(err.message);
     return res.status(404).json({ msg: "No Github profile found" });
