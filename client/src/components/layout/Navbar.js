@@ -5,13 +5,19 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  const guestLinks = (
+  const authLinks = (
     <Fragment>
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/profiles">
             <i className="fas fa-server"></i>{" "}
             <span className="hide-sm">Developers</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/posts">
+            <i className="fas fa-server"></i>{" "}
+            <span className="hide-sm">Posts</span>
           </Link>
         </li>
         <li className="nav-item">
@@ -32,7 +38,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </Fragment>
   );
 
-  const authLinks = (
+  const guestLinks = (
     <Fragment>
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
@@ -72,7 +78,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
       <div className="collapse navbar-collapse" id="mobile-nav">
         {!loading && (
-          <Fragment>{isAuthenticated ? guestLinks : authLinks}</Fragment>
+          <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}
       </div>
     </nav>
