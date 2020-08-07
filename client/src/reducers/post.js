@@ -4,6 +4,9 @@ import {
   UPDATE_POST,
   DELETE_POST,
   ADD_POST,
+  GET_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
 } from "./../actions/types";
 
 const initialstate = {
@@ -21,6 +24,13 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         posts: payload,
+        loading: false,
+      };
+
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
         loading: false,
       };
 
@@ -56,6 +66,24 @@ export default function (state = initialstate, action) {
         loading: false,
       };
     }
+
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post: { ...state.post, comments: payload.comments },
+        loading: false,
+      };
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            (comment) => comment._id !== payload
+          ),
+        },
+        loading: false,
+      };
     default: {
       return state;
     }
