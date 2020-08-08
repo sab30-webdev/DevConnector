@@ -10,6 +10,7 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT,
 } from "./types";
+import { toast } from "react-toastify";
 
 //Get all posts
 export const getPosts = () => async (dispatch) => {
@@ -72,7 +73,8 @@ export const deletePost = (postId) => async (dispatch) => {
       payload: postId,
     });
 
-    dispatch(setAlert("Post removed", "success"));
+    // dispatch(setAlert("Post removed", "success"));
+    toast.warning("Post removed");
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -99,7 +101,8 @@ export const addPost = (formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Post Added", "success"));
+    // dispatch(setAlert("Post Added", "success"));
+    toast.success("Post Added");
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -149,7 +152,8 @@ export const addComment = (postId, formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Comment Added", "success"));
+    // dispatch(setAlert("Comment Added", "success"));
+    toast.success("Comment Added");
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -168,7 +172,8 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
       payload: commentId,
     });
 
-    dispatch(setAlert("Comment Removed", "success"));
+    // dispatch(setAlert("Comment Removed", "success"));
+    toast.warning("Comment Removed");
   } catch (err) {
     dispatch({
       type: POST_ERROR,

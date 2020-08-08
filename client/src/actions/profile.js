@@ -9,6 +9,7 @@ import {
   GET_REPOS,
 } from "./types";
 import { setAlert } from "./alert";
+import { toast } from "react-toastify";
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
@@ -41,9 +42,11 @@ export const createProfile = (formData, history, edit) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(
-      setAlert(!edit ? "Profile updated" : "Profile Created", "success")
-    );
+    // dispatch(
+    //   setAlert(!edit ? "Profile updated" : "Profile Created", "success")
+    // );
+
+    !edit ? toast.success("Profile updated") : toast.success("Profile Created");
 
     if (!edit) {
       history.push("/dashboard");
@@ -79,7 +82,9 @@ export const addExperience = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Experience Added", "success"));
+    // dispatch(setAlert("Experience Added", "success"));
+
+    toast.success("Experience Added");
 
     history.push("/dashboard");
   } catch (err) {
@@ -113,7 +118,9 @@ export const addEducation = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Education Added", "success"));
+    // dispatch(setAlert("Education Added", "success"));
+
+    toast.success("Education Added");
 
     history.push("/dashboard");
   } catch (err) {
@@ -140,7 +147,9 @@ export const deleteExperience = (id) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Experience Removed", "success"));
+    // dispatch(setAlert("Experience Removed", "success"));
+
+    toast.warning("Experience Removed");
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -158,7 +167,8 @@ export const deleteEducation = (id) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Education Removed", "success"));
+    // dispatch(setAlert("Education Removed", "success"));
+    toast.warning("Education Removed");
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -174,7 +184,8 @@ export const deleteAccount = () => async (dispatch) => {
       dispatch({ type: ACCOUNT_DELETED });
       dispatch({ type: CLEAR_PROFILE });
 
-      dispatch(setAlert("Your account has been deleted", "success"));
+      // dispatch(setAlert("Your account has been deleted", "success"));
+      toast.warning("Your account has been deleted");
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,
@@ -222,7 +233,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 // Get githubrepos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/profile/${username}/repos`);
+    const res = await axios.get(`/api/profile/github/${username}`);
 
     dispatch({
       type: GET_REPOS,

@@ -20,9 +20,13 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.24",
+    "node-fetch": "^2.6.0",
+    "normalize-url": "^5.1.0",
     "react-redux": "^7.2.0",
+    "react-toastify": "^6.0.8",
     "redux-devtools-extension": "^2.13.8",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "toastify": "^2.0.1"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",

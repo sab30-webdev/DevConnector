@@ -3,7 +3,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
-// import ProfileGithub from "./ProfileGithub";
+import ProfileGithub from "./ProfileGithub";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProfileById } from "../../actions/profile";
@@ -60,9 +60,9 @@ const Profile = ({ profile: { profile }, getProfileById, auth, match }) => {
               <h4>No education credentials</h4>
             )}
           </div>
-          {/* {profile.githubusername && (
+          {profile.githubusername && (
             <ProfileGithub username={profile.githubusername} />
-          )} */}
+          )}
         </Fragment>
       )}
     </div>

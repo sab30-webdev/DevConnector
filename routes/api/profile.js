@@ -6,6 +6,8 @@ const auth = require("../../middlewares/auth");
 const Profile = require("../../models/Profile");
 const Post = require("../../models/Post");
 const { check, validationResult } = require("express-validator");
+const normalize = require("normalize-url");
+const fetch = require("node-fetch");
 
 router.get("/me", auth, async (req, res) => {
   try {
@@ -292,12 +294,31 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
   }
 });
 
-router.get("/github", async (req, res) => {
+// router.get("/github", async (req, res) => {
+//   try {
+//     // const apiUrl = "https://api.quotable.io/random";
+//     // const response = await fetch(apiUrl);
+//     // const data = await response.json();
+
+//     console.log("data");
+//     return res.send("Worked!");
+//   } catch (err) {
+//     console.error(err.message);
+//     return res.status(404).json({ msg: "No Github profile found" });
+//   }
+// });
+
+router.get("/github/:username", async (req, res) => {
   try {
-    const gitHubResponse = await axios.get(
-      `https://api.github.com/users/sab30-webdev/repos`
-    );
-    return res.send(gitHubResponse);
+    const url = `https://api.github.com/users/${req.params.username}/repos`;
+
+    async function getRepos() {
+      const response = await fetch(url);
+      const data = await response.json();
+      return res.send(data);
+    }
+
+    getRepos();
   } catch (err) {
     console.error(err.message);
     return res.status(404).json({ msg: "No Github profile found" });

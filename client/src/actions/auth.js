@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { setAlert } from "./alert";
 import { setAuthToken } from "./../utils/setAuthToken";
+import { toast } from "react-toastify";
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -58,6 +59,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     dispatch({
       type: REGISTER_FAILURE,
     });
+    toast.error("Register failure");
   }
 };
 
@@ -88,10 +90,12 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAILURE,
     });
+    toast.error("Login failure");
   }
 };
 
 export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
+  toast.info("Logged out");
 };

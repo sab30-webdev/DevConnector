@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "./../../actions/auth";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
+    toast("Welcome");
     return <Redirect to="/dashboard" />;
   }
 

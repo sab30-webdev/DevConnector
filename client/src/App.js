@@ -15,7 +15,8 @@ import EditProfile from "./components/profile-forms/EditProfile";
 import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
 import PrivateRoute from "./components/routing/PrivateRoute";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 //redux
 import { Provider } from "react-redux";
@@ -36,13 +37,14 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Navbar />
+        <ToastContainer />
         <Route exact path="/" component={Landing} />
         <Alert />
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profiles" component={Profiles} />
-          {/* <Route exact path="/profile/:id" component={Profile} /> */}
+          <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/posts/profile/:id" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute
