@@ -312,13 +312,9 @@ router.get("/github/:username", async (req, res) => {
   try {
     const url = `https://api.github.com/users/${req.params.username}/repos`;
 
-    async function getRepos() {
-      const response = await fetch(url);
-      const data = await response.json();
-      return res.send(data);
-    }
-
-    getRepos();
+    const response = await fetch(url);
+    const data = await response.json();
+    return res.send(data);
   } catch (err) {
     console.error(err.message);
     return res.status(404).json({ msg: "No Github profile found" });
